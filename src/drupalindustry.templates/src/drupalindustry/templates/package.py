@@ -17,4 +17,10 @@ class DrupalBuildoutTemplate(MyTemplate):
             vars['with_drush'] = self.defaults['drush']
         self.boolify(vars)
 
+
+class DrupalLayoutTemplate(MyTemplate):
+    """Drupal's layout template."""
+    _template_dir = 'tmpl/layout'
+    summary = "A minimal default layout to deploy a Drupal project."
+
 # vim:set et sts=4 ts=4 tw=80:

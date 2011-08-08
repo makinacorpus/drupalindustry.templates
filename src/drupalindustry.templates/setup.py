@@ -28,5 +28,6 @@ setup(name='drupalindustry.templates',
       entry_points=""" # -*- Entry points: -*-
       [paste.paster_create_template]
       drupal_buildout = drupalindustry.templates.package:DrupalBuildoutTemplate
+      drupal_layout = drupalindustry.templates.package:DrupalLayoutTemplate
       """,
       )
