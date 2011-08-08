@@ -1,0 +1,43 @@
+[buildout]
+extensions = mr.developer
+
+parts =
+    python
+#if $with_drush
+    drush
+    drush_make_patch
+    patch_drush_make
+eggs =
+    drupal.drush.generator
+#end if
+
+sources = sources
+
+#if $with_drush
+auto-checkout = drupal.drush.generator
+#end if
+
+bin-directory = \${buildout:directory}/../bin
+
+[python]
+recipe = zc.recipe.egg
+interpreter = python
+eggs = \${buildout:eggs}
+
+[sources]
+#if $with_drush
+drupal.drush.generator = git https://github.com/benoitbryon/drupal-drush-generator.git
+
+[drush]
+recipe = drupal.drush.generator:drush_generator
+
+[drush_make_patch]
+recipe = hexagonit.recipe.download
+url = http://drupal.org/files/issues/drush_make_overwrite_0.patch
+download-only = True
+
+[patch_drush_make]
+recipe = plone.recipe.command
+command = cd \${buildout:directory}/lib/drush_commands/drush_make/ && patch -p 1 < \${buildout:parts-directory}/drush_make_patch/drush_make_overwrite_0.patch && cd \${buildout:directory}
+#end if
+
