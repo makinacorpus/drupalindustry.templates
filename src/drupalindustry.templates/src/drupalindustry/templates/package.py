@@ -33,7 +33,6 @@ class DrupalApache2VhostTemplate(MyTemplate):
     vars = [var('vhost_nb', 'Vhost Number', default=defaults['vhost_nb']),
             var('vhost_ip', 'Vhost Listening IP',
                 default=defaults['vhost_ip']),
-            var('http_port', 'Listening port', default=defaults['http_port']),
             var('server_name', 'ServerName', default=defaults['server_name']),
             var('server_alias', 'ServerAlias', default=''),
             ]
@@ -42,6 +41,8 @@ class DrupalApache2VhostTemplate(MyTemplate):
         """."""
         if not 'server_root' in vars.keys():
             vars['project_root'] = os.path.join(os.getcwd(), vars['project'])
+        if not 'http_port' in vars.keys():
+            vars['http_port'] = self.defaults['http_port']
         self.boolify(vars)
 
 # vim:set et sts=4 ts=4 tw=80:
