@@ -29,5 +29,6 @@ setup(name='drupalindustry.templates',
       [paste.paster_create_template]
       drupal_buildout = drupalindustry.templates.package:DrupalBuildoutTemplate
       drupal_layout = drupalindustry.templates.package:DrupalLayoutTemplate
+      drupal_a2_vhost = drupalindustry.templates.package:DrupalApache2VhostTemplate
       """,
       )
