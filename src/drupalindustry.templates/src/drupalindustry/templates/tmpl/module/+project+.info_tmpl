@@ -1,0 +1,9 @@
+project = ${project}
+name = ${name}
+description = ${description}
+core = ${core_version}
+version = ${core_version}-${version}
+package = ${package}
+files[] = ${project}.module
+;dependencies[]
+ 
