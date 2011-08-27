@@ -69,6 +69,7 @@ Usage
     cd ..
     bin/drush --version
     bin/drush make --version
+    cat bin/drush
     cd ..
 
 * Start a new Drupal module:
