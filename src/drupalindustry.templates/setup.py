@@ -6,7 +6,7 @@ version = '0.1'
 setup(name='drupalindustry.templates',
       version=version,
       description="Templates to deploy a Drupal project",
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
@@ -29,5 +29,7 @@ setup(name='drupalindustry.templates',
       [paste.paster_create_template]
       drupal_buildout = drupalindustry.templates.package:DrupalBuildoutTemplate
       drupal_module = drupalindustry.templates.package:DrupalModuleTemplate
+      drupal_layout = drupalindustry.templates.package:DrupalLayoutTemplate
+      drupal_a2_vhost = drupalindustry.templates.package:DrupalApache2VhostTemplate
       """,
       )
