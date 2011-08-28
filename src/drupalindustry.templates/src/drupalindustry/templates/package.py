@@ -10,12 +10,9 @@ class DrupalBuildoutTemplate(BaseTemplate):
     _template_dir = 'tmpl/buildout'
     defaults = getdefaults('buildout')
     summary = "A Buildout to deploy a Drupal project."
-
-    def pre(self, command, output_dir, vars):
-        """Prepare template generation."""
-        super(DrupalBuildoutTemplate, self).pre(command, output_dir, vars)
-        if not 'with_drush' in vars.keys():
-            vars['with_drush'] = self.defaults['drush']
+    vars = [var('with_drush', 'Generate drush script', default=defaults['with_drush']),
+            var('with_sphinx', 'Use sphinx as documentation tool', default=defaults['with_sphinx']),
+            ]
 
 
 class DrupalModuleTemplate(BaseTemplate):
