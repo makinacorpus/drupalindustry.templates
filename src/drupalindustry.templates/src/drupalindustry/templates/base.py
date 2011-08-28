@@ -23,12 +23,12 @@ def getdefaults(section, cfg=DEFAULT_CONFIG_FILE):
     return settings
 
 
-class MyTemplate(Template):
+class BaseTemplate(Template):
     """Base template."""
     use_cheetah = True
 
     def boolify(self, vars):
-        """."""
+        """Replace False-synonyms by a False boolean value in self.vars."""
         unset = ['none', 'false', '0', 'n']
         for key in vars.keys():
             if isinstance(vars[key], basestring):
@@ -36,7 +36,7 @@ class MyTemplate(Template):
                     vars[key] = False
 
     def pre(self, command, output_dir, vars):
-        """."""
+        """Prepare template generation."""
         self.boolify(vars)
 
 # vim:set et sts=4 ts=4 tw=80:
