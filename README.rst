@@ -83,3 +83,35 @@ Usage
     ls -al ~/mymodule/
     cat ~/mymodule/mymodule.module
     cat ~/mymodule/mymodule.info
+
+**********
+Contribute
+**********
+
+Add a new template
+==================
+
+* Clone this repository
+* Install with buildout
+* Add a template class in
+  src/drupalindustry.templates/src/drupalindustry/templates/package.py
+* Create template files in
+  src/drupalindustry.templates/src/drupalindustry/templates/tmpl/.
+  One directory per template.
+  See Cheetah documentation for the syntax.
+* If necessary, add default configuration in
+  src/drupalindustry.templates/src/drupalindustry/templates/etc/defaults.cfg.
+* Register your new template in entry-points section of
+  src/drupalindustry.templates/setup.py
+* Update your installation:
+  ::
+
+    bin/buildout -N -o
+
+* Make sure your new template appears is listed by:
+  ::
+
+    bin/paster create --list-templates
+
+* Try your new template.
+* Commit your changes.
