@@ -58,6 +58,10 @@ Usage
     # Generate Apache2 configuration file
     bin/paster create -t drupal_a2_vhost mysite/etc
     cat mysite/etc/*.conf
+
+    # Generate PHP configuration file
+    bin/paster create -t drupal_php_ini mysite/etc/php
+    cat mysite/etc/php/php.ini
     
     # Optionally, generate buildout configuration file for your project...
     # (yes, Drupal users, I know you are wondering what is this for)

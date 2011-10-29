@@ -59,4 +59,17 @@ class DrupalApache2VhostTemplate(BaseTemplate):
         if not 'http_port' in vars.keys():
             vars['http_port'] = self.defaults['http_port']
 
+
+class DrupalPHPIniTemplate(BaseTemplate):
+    """PHP configuration file template."""
+    _template_dir = 'tmpl/php_ini'
+    #defaults = getdefaults('vhost')
+    summary = "A php.ini file for a Drupal project."
+
+    vars = []
+
+    def pre(self, command, output_dir, vars):
+        """Prepare template generation."""
+        super(DrupalPHPIniTemplate, self).pre(command, output_dir, vars)
+
 # vim:set et sts=4 ts=4 tw=80:

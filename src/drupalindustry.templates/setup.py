@@ -22,7 +22,7 @@ setup(name='drupalindustry.templates',
       package_dir = {'': 'src'},
       namespace_packages=['drupalindustry'],
       include_package_data=True,
-      data_files = [('etc', ['src/templates/etc/defaults.cfg'])],
+      data_files = [('etc', ['src/drupalindustry/templates/etc/defaults.cfg'])],
       zip_safe=False,
       install_requires=['setuptools', 'PasteScript', 'Cheetah'],
       entry_points=""" # -*- Entry points: -*-
@@ -31,5 +31,6 @@ setup(name='drupalindustry.templates',
       drupal_module = drupalindustry.templates.package:DrupalModuleTemplate
       drupal_layout = drupalindustry.templates.package:DrupalLayoutTemplate
       drupal_a2_vhost = drupalindustry.templates.package:DrupalApache2VhostTemplate
+      drupal_php_ini = drupalindustry.templates.package:DrupalPHPIniTemplate
       """,
       )
