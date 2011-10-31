@@ -1,0 +1,22 @@
+[buildout]
+extends =
+    versions.cfg
+    directories.cfg
+    #if $with_jenkins
+    jenkins.cfg
+    #end if
+    #if $with_drush
+    drush.cfg
+    #end if
+    #if $with_sphinx
+    sphinx.cfg
+    #end if
+parts +=
+    drupal-industry
+find-links +=
+    https://github.com/makinacorpus/drupalindustry.templates/tarball/master#egg=drupalindustry.templates-0.1
+
+[drupal-industry]
+recipe = zc.recipe.egg
+eggs =
+    drupalindustry.templates

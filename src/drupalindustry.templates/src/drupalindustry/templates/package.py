@@ -12,6 +12,9 @@ class DrupalBuildoutTemplate(BaseTemplate):
     summary = "A Buildout to deploy a Drupal project."
     vars = [var('with_drush', 'Generate drush script', default=defaults['with_drush']),
             var('with_sphinx', 'Use sphinx as documentation tool', default=defaults['with_sphinx']),
+            var('with_jenkins', 'Install Jenkins continuous integration server?', default=defaults['with_jenkins']),
+            var('php', 'Which php? Empty string to let drush guess.', default=defaults['php']),
+            var('drupal_root', 'Path to Drupal root.', default=defaults['drupal_root']),
             ]
 
 

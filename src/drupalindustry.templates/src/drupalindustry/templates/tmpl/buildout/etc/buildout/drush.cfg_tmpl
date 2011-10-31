@@ -1,0 +1,13 @@
+# This buildout configuration file installs Drush (http://drush.ws).
+[buildout]
+find-links +=
+    https://github.com/benoitbryon/drupal-drush-generator/tarball/master#egg=drupal.drush.generator-0.1dev
+parts += drush
+eggs +=
+    drupal.drush.generator
+
+[drush]
+recipe = drupal.drush.generator:drush_generator
+interpreter = drush
+php = ${php}
+drupal-root = ${drupal_root}
