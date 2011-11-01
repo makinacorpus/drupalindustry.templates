@@ -1,0 +1,20 @@
+; API Version is here just to avoid warning message
+api = ${api_version}
+; We are in Drupal 7
+core = ${core_version}
+projects[drupal][type] = core
+#if $with_profile
+; Profile
+projects[simplydrupal][type] = "profile"
+projects[simplydrupal][download][type] = "${profile_download_type}"
+projects[simplydrupal][download][url] = "${profile_download_url}"
+projects[simplydrupal][download][branch] = "${profile_download_branch}"
+#end if
+#if $with_developer_tools
+; Developer tools
+projects[devel] =
+projects[coder] =
+projects[coder_review] =
+projects[diff] =
+projects[potx] = 
+#end if

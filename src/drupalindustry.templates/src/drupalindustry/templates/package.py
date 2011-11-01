@@ -75,4 +75,25 @@ class DrupalPHPIniTemplate(BaseTemplate):
         """Prepare template generation."""
         super(DrupalPHPIniTemplate, self).pre(command, output_dir, vars)
 
+
+class DrushSiteMakefileTemplate(BaseTemplate):
+    """Template to generate a drush makefile for a site installation."""
+    _template_dir = 'tmpl/drush_site_makefile'
+    defaults = getdefaults('drush_site_makefile')
+    summary = "A minimal drush makefile to install a site based on a profile."
+
+    vars = [var('site', 'Site name', default=defaults['site']),
+            var('api_version', 'API version', default=defaults['api_version']),
+            var('core_version', 'Drupal core version', default=defaults['core_version']),
+            var('with_profile', 'Install a profile?', default=defaults['with_profile']),
+            var('profile_download_type', 'Profile download type', default=defaults['profile_download_type']),
+            var('profile_download_url', 'Profile download URL', default=defaults['profile_download_url']),
+            var('profile_download_branch', 'Profile download branch', default=defaults['profile_download_branch']),
+            var('with_developer_tools', 'Install developer tools?', default=defaults['with_developer_tools']),
+            ]
+
+    def pre(self, command, output_dir, vars):
+        """Prepare template generation."""
+        super(DrushSiteMakefileTemplate, self).pre(command, output_dir, vars)
+
 # vim:set et sts=4 ts=4 tw=80:

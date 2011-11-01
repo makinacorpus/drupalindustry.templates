@@ -62,6 +62,11 @@ Usage
     # Generate PHP configuration file
     bin/paster create -t drupal_php_ini mysite/etc/php
     cat mysite/etc/php/php.ini
+
+    # Generate drush makefile for your site in etc/drupal/
+    # You'd use it with something like bin/drush make etc/drupal/default.make
+    bin/paster create -t drush_site_makefile etc/drupal
+    ls etc/drupal
     
     # Optionally, generate buildout configuration file for your project...
     # (yes, Drupal users, I know you are wondering what is this for)
