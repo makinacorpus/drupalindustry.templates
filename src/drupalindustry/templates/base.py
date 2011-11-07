@@ -4,7 +4,7 @@ import ConfigParser
 import os.path
 from paste.script.templates import Template
 
-_dir, _f = os.path.split(os.path.abspath(__file__))
+_dir = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_CONFIG_FILE = os.path.join(_dir, 'etc', 'defaults.cfg')
 BOOLEANS = ['False', 'True', '1', '0']
 
