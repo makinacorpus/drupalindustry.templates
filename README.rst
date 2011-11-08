@@ -99,13 +99,13 @@ Add a new template
 * Clone this repository
 * Install with buildout
 * Add a template class in
-  src/drupalindustry.templates/src/drupalindustry/templates/package.py
+  src/drupalindustry/templates/package.py
 * Create template files in
-  src/drupalindustry.templates/src/drupalindustry/templates/tmpl/.
+  src/drupalindustry/templates/tmpl/.
   One directory per template.
   See Cheetah documentation for the syntax.
 * If necessary, add default configuration in
-  src/drupalindustry.templates/src/drupalindustry/templates/etc/defaults.cfg.
+  src/drupalindustry/templates/etc/defaults.cfg.
 * Register your new template in entry-points section of
   src/drupalindustry.templates/setup.py
 * Update your installation:
