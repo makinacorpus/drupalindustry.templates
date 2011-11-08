@@ -62,7 +62,7 @@ class DrupalApache2VhostTemplate(BaseTemplate):
     def pre(self, command, output_dir, vars):
         """Prepare template generation."""
         super(DrupalApache2VhostTemplate, self).pre(command, output_dir, vars)
-        if not 'server_root' in vars.keys(v):
+        if not 'server_root' in vars.keys():
             vars['project_root'] = os.path.join(os.getcwd(), vars['project'])
         if not 'http_port' in vars.keys():
             vars['http_port'] = self.defaults['http_port']
