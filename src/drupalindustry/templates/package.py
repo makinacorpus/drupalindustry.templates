@@ -29,11 +29,6 @@ class DrupalBuildoutTemplate(BaseTemplate):
             var('drupal_root', 'Path to Drupal root.', default=defaults['drupal_root']),
             ]
 
-    def pre(self, command, output_dir, vars):
-        """Prepare template generation."""
-        super(DrupalBuildoutTemplate, self).pre(command, output_dir, vars)
-        vars['buildout_directory'] = os.path.normpath(os.path.abspath(output_dir))
-
 
 class DrupalModuleTemplate(BaseTemplate):
     """Template to generate a new Drupal module."""

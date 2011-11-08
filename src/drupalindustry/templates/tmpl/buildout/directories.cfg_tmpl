@@ -2,14 +2,11 @@
 # 
 # Sets up buildout directories as follow:
 # 
-# * buildout:directory is the project root
 # * binaries in bin/
 # * all other buildout's stuff in lib/buildout/
 #
-# Buildout directory directive is statically set here. Otherwise, the
-# \${buildout:directory} value is the same directory as the configuration file.
-# The alternative to this static configuration is to pass buildout:directory
-# as an argument to the buildout script, such as:
+# Buildout directory directive cannot be statically set here. You may pass
+# buildout:directory as an argument to the buildout script, such as:
 # ::
 #
 #   bin/buildout -c etc/buildout/buildout.cfg buildout:directory=`pwd`
@@ -22,7 +19,6 @@
 # Moreover, people who don't know buildout usually feel more comfortable with
 # this configuration.
 [buildout]
-directory = ${buildout_directory}
 bin-directory = bin
 develop-eggs-directory = lib/buildout/develop-eggs
 downloads-directory = lib/buildout/downloads
