@@ -1,1 +1,1 @@
-recursive-include src/drupalindustry/*
+recursive-include src/drupalindustry *
