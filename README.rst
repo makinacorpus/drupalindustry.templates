@@ -108,7 +108,7 @@ Add a new template
   src/drupalindustry/templates/etc/defaults.cfg.
 * Register your new template in entry-points section of
   src/drupalindustry.templates/setup.py
-* Update your installation:
+* Update your installation registry:
   ::
 
     bin/buildout -N -o
