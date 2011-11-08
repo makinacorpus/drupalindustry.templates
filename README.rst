@@ -70,12 +70,14 @@ Usage
     
     # Optionally, generate buildout configuration file for your project...
     # (yes, Drupal users, I know you are wondering what is this for)
-    bin/paster create -t drupal_buildout mysite/buildout
+    bin/paster create -t drupal_buildout mysite/etc/buildout
+    # Generate Buildout's bootstrap if necessary
+    bin/paster create -t drupal_buildout mysite/lib/buildout
     # ... then use it to download and install drush & drush make
-    cd mysite/buildout/
-    python bootstrap.py -d
-    ../bin/buildout
-    cd ..
+    cd mysite/
+    python lib/buildout/bootstrap.py --distribute -c etc/buildout/base.cfg buildout:directory=`pwd`
+    bin/buildout -c etc/buildout/base.cfg buildout:directory=`pwd`
+    # If you toggled with_drush, you got drush installed!
     bin/drush --version
     bin/drush make --version
     cat bin/drush

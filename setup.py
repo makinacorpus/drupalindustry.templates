@@ -27,6 +27,7 @@ setup(name='drupalindustry.templates',
       install_requires=['setuptools', 'PasteScript', 'Cheetah'],
       entry_points=""" # -*- Entry points: -*-
       [paste.paster_create_template]
+      drupal_buildout_bootstrap = drupalindustry.templates.package:DrupalBuildoutBootstrapTemplate
       drupal_buildout = drupalindustry.templates.package:DrupalBuildoutTemplate
       drupal_module = drupalindustry.templates.package:DrupalModuleTemplate
       drupal_layout = drupalindustry.templates.package:DrupalLayoutTemplate

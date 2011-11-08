@@ -5,6 +5,18 @@ from paste.script.templates import var
 from base import BaseTemplate, getdefaults
 
 
+class DrupalBuildoutBootstrapTemplate(BaseTemplate):
+    """Drupal's buildout boostrap template.
+
+    Buildout bootstrap includes bootstrap.py and minimal buildout configuration
+    file to installs drupalindustry.templates package.
+    """
+    _template_dir = 'tmpl/buildout_bootstrap'
+    summary = "Bootstrap script and configuration file for buildout + " \
+              "drupalindustry.templates package."
+    vars = []
+
+
 class DrupalBuildoutTemplate(BaseTemplate):
     """Drupal's buildout template."""
     _template_dir = 'tmpl/buildout'
@@ -71,7 +83,6 @@ class DrupalApache2VhostTemplate(BaseTemplate):
 class DrupalPHPIniTemplate(BaseTemplate):
     """PHP configuration file template."""
     _template_dir = 'tmpl/php_ini'
-    #defaults = getdefaults('vhost')
     summary = "A php.ini file for a Drupal project."
 
     vars = []
