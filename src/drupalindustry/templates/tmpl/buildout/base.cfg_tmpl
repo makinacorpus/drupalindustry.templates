@@ -15,6 +15,7 @@ parts +=
     drupal-industry
 find-links +=
     https://github.com/makinacorpus/drupalindustry.templates/tarball/master#egg=drupalindustry.templates-0.1
+    https://github.com/makinacorpus/drupalindustry.scripts/tarball/master#egg=drupalindustry.scripts-0.1dev
 
 [drupal-industry]
 recipe = zc.recipe.egg
