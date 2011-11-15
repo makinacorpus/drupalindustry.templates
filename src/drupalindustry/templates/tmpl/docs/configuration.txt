@@ -1,0 +1,5 @@
+#############
+Configuration
+#############
+
+Ce document décrit les paramètres disponibles pour le projet.

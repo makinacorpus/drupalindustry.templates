@@ -1,0 +1,6 @@
+####
+Logs
+####
+
+Indique ce qui peut être loggé, comment configurer les logs et où ces logs sont
+archivés.

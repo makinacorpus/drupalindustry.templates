@@ -34,5 +34,6 @@ setup(name='drupalindustry.templates',
       drupal_a2_vhost = drupalindustry.templates.package:DrupalApache2VhostTemplate
       drupal_php_ini = drupalindustry.templates.package:DrupalPHPIniTemplate
       drush_site_makefile = drupalindustry.templates.package:DrushSiteMakefileTemplate
+      drupal_site_docs = drupalindustry.templates.package:DrupalSiteDocumentationTemplate
       """,
       )

@@ -91,6 +91,12 @@ Usage
     cat ~/mymodule/mymodule.module
     cat ~/mymodule/mymodule.info
 
+* Start a Drupal site documentation, based on `Sphinx`_:
+  ::
+
+    bin/paster create -t drupal_site_docs docs
+    ls -al docs/
+
 **********
 Contribute
 **********
@@ -122,3 +128,11 @@ Add a new template
 
 * Try your new template.
 * Commit your changes.
+
+**********
+References
+**********
+
+.. target-notes::
+
+.. _`Sphinx`: http://sphinx.pocoo.org/

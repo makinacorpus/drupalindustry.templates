@@ -1,7 +1,9 @@
-#/usr/bin/env/python
-#
+# coding=utf8
 import os
+from datetime import date
+
 from paste.script.templates import var
+
 from base import BaseTemplate, getdefaults
 
 
@@ -106,5 +108,26 @@ class DrushSiteMakefileTemplate(BaseTemplate):
     def pre(self, command, output_dir, vars):
         """Prepare template generation."""
         super(DrushSiteMakefileTemplate, self).pre(command, output_dir, vars)
+
+
+class DrupalSiteDocumentationTemplate(BaseTemplate):
+    """Template to initiate the documentation of a Drupal project (site)."""
+    _template_dir = 'tmpl/docs'
+    defaults = getdefaults('docs')
+    summary = "Documentation quickstart for a Drupal project."
+
+    vars = [var('project_title', 'Project title', default=''),
+            var('project_slug', 'Project machine name (alphanumeric and underscores)', default=''),
+            var('author_name', 'Author name', default=''),
+            var('author_email', 'Author email', default=''),
+            var('version', 'Short version (i.e. 1.0)', default=defaults['version']),
+            var('release', 'Full version (i.e. 1.0.1beta2)', default=defaults['release']),
+            var('language', 'Language', default=defaults['language']),
+            ]
+
+    def pre(self, command, output_dir, vars):
+        """Prepare template generation."""
+        vars['year'] = '%s' % date.today().year
+        super(DrupalSiteDocumentationTemplate, self).pre(command, output_dir, vars)
 
 # vim:set et sts=4 ts=4 tw=80:

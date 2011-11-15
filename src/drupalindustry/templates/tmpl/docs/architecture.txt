@@ -1,0 +1,5 @@
+############
+Architecture
+############
+
+Ce document décrit l'architecture du projet.
