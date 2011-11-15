@@ -1,10 +1,20 @@
 # coding=utf8
 import os
 from datetime import date
+import sys
 
 from paste.script.templates import var
 
 from base import BaseTemplate, getdefaults
+
+
+def guess_project_dir():
+    """Try to guess and return absolute path to project dir."""
+    project_dir = sys.argv[0]  # Assume we are running bin/paster
+    project_dir = os.path.abspath(project_dir)
+    project_dir = os.path.dirname(os.path.dirname(project_dir))
+    project_dir = os.path.normpath(project_dir)
+    return project_dir
 
 
 class DrupalBuildoutBootstrapTemplate(BaseTemplate):
@@ -66,13 +76,14 @@ class DrupalApache2VhostTemplate(BaseTemplate):
                 default=defaults['vhost_ip']),
             var('server_name', 'ServerName', default=defaults['server_name']),
             var('server_alias', 'ServerAlias', default=''),
+            var('project_root', 'Project root', default=guess_project_dir()),
+            var('logs_dir', 'Logs directory', default=os.path.join(guess_project_dir(), 'var', 'log', 'apache2')),
+            var('tmp_dir', 'Temporary directory', default=os.path.join(guess_project_dir(), 'var', 'tmp')),
             ]
-
+    
     def pre(self, command, output_dir, vars):
         """Prepare template generation."""
         super(DrupalApache2VhostTemplate, self).pre(command, output_dir, vars)
-        if not 'server_root' in vars.keys():
-            vars['project_root'] = os.path.join(os.getcwd(), vars['project'])
         if not 'http_port' in vars.keys():
             vars['http_port'] = self.defaults['http_port']
 

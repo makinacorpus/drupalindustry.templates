@@ -1,26 +1,4 @@
 <VirtualHost $vhost_ip:$http_port>
-   #  Variables
-   #  =========
-   # 
-   #  The following values should be registered as variables and this file 
-   #  generated.
-   #  
-   #  server name: main domain name
-   #  server alias: alternate domain names separated by space
-   #  system username: owner of the project files
-   #  project name
-   #  project root: absolute base directory for the project, contains
-   #                www, logs, tmp, apache.conf... and other project-related 
-   #                files. Should contain "system username" and "project name".
-   #  directories: temporary, sessions, logs, ...
-
-   #  Drupal specific
-   #  ===============
-   #  
-   #  The following directories are referenced as Drupal variables (in DB):
-   #  * file_directory_temp: defaults to /tmp in standard Drupal installation
-   #  * file_directory_path: defaults to sites/SITENAME/files (relative)
-
    #  Tests
    #  =====
    #  
@@ -42,8 +20,8 @@
   DocumentRoot ${project_root}/www
   LogLevel warn
 
-  ErrorLog ${project_root}/var/log/access.log
-  CustomLog ${project_root}/var/log/access.log combined
+  ErrorLog ${logs_dir}/access.log
+  CustomLog ${logs_dir}/access.log combined
 
   <Directory ${project_root}/www>
     Order allow,deny
@@ -71,16 +49,16 @@
     php_admin_value doc_root                    "${project_root}/www"
     # Drupal's variable_get("file_directory_temp") should be under open_basedir.
     # It defaults to /tmp/ on standard Drupal installations.
-    php_admin_value open_basedir                "./:/tmp:${project_root}/www:${project_root}/var/tmp"
+    php_admin_value open_basedir                "./:/tmp:${project_root}/www:${tmp_dir}"
     php_value include_path                      "${project_root}/www"
     
     # UPLOADS
     php_admin_flag file_uploads                 on
-    php_admin_value upload_tmp_dir              "${project_root}/var/tmp"
+    php_admin_value upload_tmp_dir              "${tmp_dir}"
     php_value upload_max_filesize               128M
     
     # LOGS
-    php_value error_log                         "${project_root}/var/log/php.log"
+    php_value error_log                         "${logs_dir}/php.log"
     php_flag display_errors                     off
     php_flag display_startup_errors             off
     php_flag html_errors                        off
@@ -104,15 +82,15 @@
     # Change all directives in http://www.php.net/manual/en/ini.list.php which
     # default value is /tmp.
     # Warning: validate that these directories are under open_basedir.
-    php_value axis2.log_path                        "${project_root}/var/tmp"
-    php_value session_pgsql.sem_file_name           "${project_root}/var/tmp/php_session_pgsql"
-    php_value soap.wsdl_cache_dir                   "${project_root}/var/tmp"
-    php_value uploadprogress.file.filename_template "${project_root}/var/tmp/upt_%s.txt"
-    php_value xdebug.output_dir                     "${project_root}/var/tmp"
-    php_value xdebug.profiler_output_dir            "${project_root}/var/tmp"
-    php_value xdebug.trace_output_dir               "${project_root}/var/tmp"
+    php_value axis2.log_path                        "${tmp_dir}"
+    php_value session_pgsql.sem_file_name           "${tmp_dir}/php_session_pgsql"
+    php_value soap.wsdl_cache_dir                   "${tmp_dir}"
+    php_value uploadprogress.file.filename_template "${tmp_dir}/upt_%s.txt"
+    php_value xdebug.output_dir                     "${tmp_dir}"
+    php_value xdebug.profiler_output_dir            "${tmp_dir}"
+    php_value xdebug.trace_output_dir               "${tmp_dir}"
     # Change default session save path too
-    php_value session.save_path                     "${project_root}/var/tmp/sessions"
+    php_value session.save_path                     "${tmp_dir}/sessions"
 
   </Directory>
 </VirtualHost>
