@@ -87,6 +87,28 @@ class DrupalApache2VhostTemplate(BaseTemplate):
         if not 'http_port' in vars.keys():
             vars['http_port'] = self.defaults['http_port']
 
+class DrupalNginxVhostTemplate(BaseTemplate):
+    """Drupal's Nginx vhost template."""
+    _template_dir = 'tmpl/nginx_vhost'
+    defaults = getdefaults('nginxvhost')
+    summary = "A Nginx vhost for a Drupal7 project."
+
+    vars = [var('vhost_nb', 'Vhost number', default=defaults['vhost_nb']),
+            var('vhost_ip', 'Vhost listening IP',
+                default=defaults['vhost_ip']),
+            var('server_name', 'ServerName', default=defaults['server_name']),
+            var('server_alias', 'ServerAlias', default=defaults['server_alias']),
+            var('project_root', 'Project root', default=guess_project_dir()),
+            var('nb_worker', 'Number of workers (put number of CPU)', default=defaults['nb_worker']),
+            var('worker_cpu_affinity', 'Workers CPU affinity (4CPU, 4 workers => 1000 0100 0010 0001)', default=defaults['worker_cpu_affinity']),
+            var('worker_connections', 'Connections by worker (nb worker * nb conn  = max conn)', default=defaults['worker_connections'])
+            ]
+
+    def pre(self, command, output_dir, vars):
+        """Prepare template generation."""
+        super(DrupalNginxVhostTemplate, self).pre(command, output_dir, vars)
+        if not 'http_port' in vars.keys():
+            vars['http_port'] = self.defaults['http_port']
 
 class DrupalPHPIniTemplate(BaseTemplate):
     """PHP configuration file template."""

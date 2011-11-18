@@ -1,0 +1,29 @@
+  # max_clients = worker_processes * worker_connections
+
+  # - examples with 4 CPU:
+  # worker_processes  4;
+  # worker_cpu_affinity 0001 0010 0100 1000;
+  # - or:
+  # worker_processes  2;
+  # worker_cpu_affinity 0101 1010;
+  # - example with 2 CPU:
+  # worker_processes  2;
+  # worker_cpu_affinity 01 10;
+  # - example with 1 CPU:
+  # worker_processes  2;
+  # worker_cpu_affinity 1 1;
+  
+  worker_processes  ${nb_worker};
+  worker_cpu_affinity ${worker_cpu_affinity};
+  
+  worker_rlimit_nofile 8192;
+
+  events {
+    worker_connections  ${worker_connections};
+    ## epoll is preferred on 2.6 Linux
+    ## kernels. Cf. http://www.kegel.com/c10k.html#nb.epoll
+    use epoll;
+    ## Accept as many connections as possible.
+    multi_accept on;
+  }
+

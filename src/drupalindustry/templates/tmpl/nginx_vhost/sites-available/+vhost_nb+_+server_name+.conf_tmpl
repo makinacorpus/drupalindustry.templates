@@ -1,0 +1,61 @@
+    # Configuration for ${server_name}.
+
+#if $server_alias
+    # -------------------------------------
+    #  Redirection of alternate DNS names |
+    # -------------------------------------
+    # Return (no rewrite) server block.
+    server {
+        # This is to avoid the spurious if for sub-domain name
+        # "rewriting".
+        listen [::]:$vhost_ip;
+        server_name ${server_alias};
+        return 301 \$scheme://${server_name}\$request_uri;
+    } # server domain return.
+#end if
+
+    # -------------------------------------
+    #  MAIN VirtualHost                   |
+    # -------------------------------------
+    # HTTP server.
+    server {
+        listen [::]:80;
+
+        server_name ${server_name};
+        # Filesystem root of the site
+        root ${project_root}/www;
+        
+        # 32 connections max for the same client IP
+        # in arbeit zone
+        limit_conn arbeit 32;
+
+        include sites-available/drupal_php_fpm.conf;
+
+    } # HTTP server
+
+
+    # # HTTPS server.
+    # server {
+    #    listen [::]:443 ssl;
+    #    server_name ${server_name};
+    #    # Filesystem root of the site
+    #    root ${project_root}/www;
+    #    
+    #    limit_conn arbeit 10;
+    #
+    #    # Keep alive timeout set to a greater value for SSL/TLS.
+    #    keepalive_timeout 75 75;
+    #    # See the keepalive_timeout directive in nginx.conf.
+    #    # Server certificate and key.
+    #    ssl_certificate /etc/ssl/certs/example-cert.pem;
+    #    ssl_certificate_key /etc/ssl/private/example.key;
+    #
+    #    # Strict Transport Security header for enhanced security. See
+    #    # http://www.chromium.org/sts. I've set it to 2 hours; set it to
+    #    # whichever age you want.
+    #    add_header Strict-Transport-Security "max-age=7200";
+    #
+    #    index index.php;
+    #
+    #    include sites-available/drupal_php_fpm.conf;
+    # } # HTTPS server
