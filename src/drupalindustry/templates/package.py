@@ -99,16 +99,55 @@ class DrupalNginxVhostTemplate(BaseTemplate):
             var('server_name', 'ServerName', default=defaults['server_name']),
             var('server_alias', 'ServerAlias', default=defaults['server_alias']),
             var('project_root', 'Project root', default=guess_project_dir()),
-            var('nb_worker', 'Number of workers (put number of CPU)', default=defaults['nb_worker']),
+            var('http_port', 'HTTP port', default=defaults['http_port']),
+            var('nb_worker', 'Number of workers (put number of CPU)', default=int(defaults['nb_worker'])),
             var('worker_cpu_affinity', 'Workers CPU affinity (4CPU, 4 workers => 1000 0100 0010 0001)', default=defaults['worker_cpu_affinity']),
-            var('worker_connections', 'Connections by worker (nb worker * nb conn  = max conn)', default=defaults['worker_connections'])
+            var('worker_connections', 'Connections by worker (nb worker * nb conn  = max conn)', default=int(defaults['worker_connections']))
             ]
 
     def pre(self, command, output_dir, vars):
         """Prepare template generation."""
         super(DrupalNginxVhostTemplate, self).pre(command, output_dir, vars)
-        if not 'http_port' in vars.keys():
-            vars['http_port'] = self.defaults['http_port']
+
+class DrupalPHPFpmTemplate(BaseTemplate):
+    """Drupal's PHP-FPM chrooted pool configuration template."""
+    _template_dir = 'tmpl/php_fpm'
+    defaults = getdefaults('phpfpm')
+    summary = "A php-fpm chrooted pool (fastcgi) for a Drupal7 project."
+
+    vars = [var('pool_name', 'PHP FPM Pool nickname (short name of the project)', default=defaults['pool_name']),
+            var('project_root', 'Project root', default=guess_project_dir()),
+            var('pm_max_children', 'FPM Pool Size: maximum process', default=int(defaults['pm_max_children'])),
+            var('pm_start_servers', 'FPM Pool Size: starting process', default=int(defaults['pm_start_servers'])),
+            var('pm_min_spare_servers', 'FPM Pool Size: minimum process doing nothing', default=int(defaults['pm_min_spare_servers'])),
+            var('pm_max_spare_servers', 'FPM Pool Size: maximum process doing nothing', default=int(defaults['pm_max_spare_servers'])),
+            var('pm_max_requests', 'FPM Pool: max number of request in a process lifetime', default=int(defaults['pm_max_requests'])),
+            var('display_errors'
+              , 'Should we display errors inline (set 0 in Production!)'
+              , default=int(defaults['display_errors'])),
+            var('error_reporting'
+              , "Error level :\nE_ALL & ~E_NOTICE -> 6135\nE_ALL -> 6143\nE_ALL^E_STRICT -> 8191\nreally all -> -1"
+              , default=int(defaults['error_reporting'])),
+            var('upload_max_filesize', 'max size for uploaded files', default=defaults['upload_max_filesize']),
+            var('max_input_time', 'max time allowed to received the request (may be long if big uploads)', default=defaults['max_input_time']),
+            var('request_terminate_timeout', 'maximum time to build HTTP answer in the PHP process', default=defaults['request_terminate_timeout']),
+            var('memory_limit', 'Memory Limit per process', default=defaults['memory_limit']),
+            var('allow_url_fopen', 'allow_url_fopen (bad, avoid if you can)', default=int(defaults['allow_url_fopen'])),
+            var('apc', 'Do you have APC?', default=defaults['apc']),
+            var('apc_stat', 'APC: should APC test the file modification (remove it in production)', default=int(defaults['apc_stat'])),
+            var('apc_stat_ctime', 'APC: should APC test the file modification ctime also (remove it in production)', default=int(defaults['apc_stat_ctime'])),
+            var('apc_num_files_hint', 'APC: How many files in the source code (this is an hint to help APC)', default=int(defaults['apc_num_files_hint'])),
+            var('apc_user_entries_hint', 'APC: How many entries in the APC cache (this is an hint to help APC)', default=int(defaults['apc_user_entries_hint'])),
+            var('apc_ttl'
+              , 'APC: default time to live in cache for apc, read generated conf, setting anything different than 0 may lead to strange things in dev'
+              , default=int(defaults['apc_ttl'])),
+            var('apc_rfc1867', 'APC: RFC1867 upload progress support in APC', default=int(defaults['apc_rfc1867'])),
+            var('apc_shm_size', 'APC: The default shared memory size (32M) is ridiculous but altering it needs altering sysctl.conf', default=int(defaults['apc_shm_size']))
+            ]
+
+    def pre(self, command, output_dir, vars):
+        """Prepare template generation."""
+        super(DrupalPHPFpmTemplate, self).pre(command, output_dir, vars)
 
 class DrupalPHPIniTemplate(BaseTemplate):
     """PHP configuration file template."""

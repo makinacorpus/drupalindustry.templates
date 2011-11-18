@@ -33,6 +33,7 @@ setup(name='drupalindustry.templates',
       drupal_layout = drupalindustry.templates.package:DrupalLayoutTemplate
       drupal_a2_vhost = drupalindustry.templates.package:DrupalApache2VhostTemplate
       drupal_nginx_vhost = drupalindustry.templates.package:DrupalNginxVhostTemplate
+      drupal_phpfpm_ini = drupalindustry.templates.package:DrupalPHPFpmTemplate
       drupal_php_ini = drupalindustry.templates.package:DrupalPHPIniTemplate
       drush_site_makefile = drupalindustry.templates.package:DrushSiteMakefileTemplate
       drupal_site_docs = drupalindustry.templates.package:DrupalSiteDocumentationTemplate
