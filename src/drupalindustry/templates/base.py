@@ -29,7 +29,7 @@ class BaseTemplate(Template):
 
     def boolify(self, vars):
         """Replace False-synonyms by a False boolean value in self.vars."""
-        unset = ['none', 'false', '0', 'n']
+        unset = ['none', 'false', 'n']
         for key in vars.keys():
             if isinstance(vars[key], basestring):
                 if vars[key].lower() in unset:
