@@ -8,7 +8,7 @@
     server {
         # This is to avoid the spurious if for sub-domain name
         # "rewriting".
-        listen [::]:$vhost_ip;
+        listen [::]:\$vhost_ip;
         server_name ${server_alias};
         return 301 \$scheme://${server_name}\$request_uri;
     } # server domain return.
