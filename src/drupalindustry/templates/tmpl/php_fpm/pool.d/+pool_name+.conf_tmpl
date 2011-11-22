@@ -338,16 +338,16 @@ php_admin_value[apc.rfc1867]                   =${apc_rfc1867}
 php_admin_value[apc.include_once_override]     =1
 ; transform paths in absolute ones (no effect if apc.stat is not 0), files from stream wrappers (extended includes)
 ; won't be cached if this is activated as they cannot be used with php's realpath()
-php_admin_flag[apc.canonicalize]               =1
+php_admin_value[apc.canonicalize]               =1
 ; In production set it to 0, then file changes won't be observed before apache is restarted,
 ; significant boost, else file time is stated at each access (needed at 1 in dev)
-php_admin_flag[apc.stat]                       =${apc_stat}
+php_admin_value[apc.stat]                       =${apc_stat}
 ; avoid problems with rsync or svn not modifying mtime but only ctime
 ; so if you're in production set this to 1, like for the previous one
-php_admin_flag[apc.stat_ctime]                 =${apc_stat_ctime}
+php_admin_value[apc.stat_ctime]                 =${apc_stat_ctime}
 
 ; deprecated option: apc.optimization not available anymore
-;php_admin_flag[apc.optimization]              =0
+;php_admin_value[apc.optimization]              =0
 
 ; indication on number of files (ZF=1300, nude Drupal 7=1000)
 php_admin_value[apc.num_files_hint]            ="${apc_num_files_hint}"
