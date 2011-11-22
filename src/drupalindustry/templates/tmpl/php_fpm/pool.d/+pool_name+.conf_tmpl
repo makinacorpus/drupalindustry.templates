@@ -268,8 +268,8 @@ php_admin_value[max_input_time]      =${max_input_time}
 php_admin_value[post_max_size]       ="${upload_max_filesize}"
 
 ;#### LOGS
-php_admin_value[error_log]               = var/log/php-fpm.www.log
-;nochroot;php_admin_value[error_log]              = ${project_root}/var/log/php-fpm.www.log
+; MAKINA: WARNING: chroot does not apply on this setting
+php_admin_value[error_log]              = ${project_root}/var/log/php-fpm.www.log
 php_admin_value[log_errors]              = 1
 php_admin_value[display_errors]          = ${display_errors}
 php_admin_value[html_errors]             = 0
