@@ -142,7 +142,7 @@ class DrupalPHPFpmTemplate(BaseTemplate):
               , 'APC: default time to live in cache for apc, read generated conf, setting anything different than 0 may lead to strange things in dev'
               , default=int(defaults['apc_ttl'])),
             var('apc_rfc1867', 'APC: RFC1867 upload progress support in APC', default=int(defaults['apc_rfc1867'])),
-            var('apc_shm_size', 'APC: The default shared memory size (32M) is ridiculous but altering it needs altering sysctl.conf', default=int(defaults['apc_shm_size']))
+            var('apc_shm_size', 'APC: The default shared memory size (32M) is ridiculous but altering it needs altering sysctl.conf', default=defaults['apc_shm_size'])
             ]
 
     def pre(self, command, output_dir, vars):
